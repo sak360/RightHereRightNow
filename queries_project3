@@ -1,0 +1,58 @@
+Recent Crime
+
+filtered Query 
+var query = "https://data.cityofchicago.org/resource/x2n5-8w5q.json?$where=within_box(location,".concat(zipCode);
+            query = query + '&$order=date_of_occurrence%20DESC';
+
+Chicago Query for Crime
+
+var chiquery = "https://data.cityofchicago.org/resource/x2n5-8w5q.json?$order=date_of_occurrence%20DESC";
+
+
+StreetLight
+
+Filtered 
+var query = "https://data.cityofchicago.org/resource/zuxi-7xem.json?$where=within_box(location,".concat(zipCode);
+            query = query + '&$order=creation_date%20DESC';
+
+Chicago Query
+var chiquery = "https://data.cityofchicago.org/resource/zuxi-7xem.json?$order=creation_date%20DESC";
+
+
+
+Restaurant Query or Active POI
+
+Filtered
+
+var query = "https://data.cityofchicago.org/resource/uupf-x98q.json?$where=within_box(location,".concat(zipCode);
+    query = query + '&$order=license_start_date%20DESC';
+
+Chicago
+var ChiQuery = "https://data.cityofchicago.org/resource/uupf-x98q.json?$order=license_start_date%20DESC";
+
+
+PotHole Layer
+
+ Filter  
+   var query = "https://data.cityofchicago.org/resource/7as2-ds3y.json?$where=within_box(location,".concat(zipCode);
+            query = query + '&$order=creation_date%20DESC';
+ Chicago
+
+  var chiquery = "https://data.cityofchicago.org/resource/7as2-ds3y.json?$order=creation_date%20DESC";
+
+
+Food Inspection/RestPOI.js
+
+Filtered
+        
+        var query = "https://data.cityofchicago.org/resource/4ijn-s7e5.json?$where=within_box(location,".concat(zipCode);
+            query = query + '&$order=inspection_date%20DESC';
+Overall Chicago
+
+ var chiquery = "https://data.cityofchicago.org/resource/4ijn-s7e5.json?$order=inspection_date%20DESC";
+
+ 
+
+
+
+

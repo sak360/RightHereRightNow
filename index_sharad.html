@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>e-rive Car Sharing</title>
+
+    
+    <!--JQUERY-->
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    
+    
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300,200,400,700|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    
+    
+    <!--<link href='fonts/FuturaStd-Medium.otf' rel='opentype' type='text/css'>-->
+    
+    
+    <!--<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300,200,400,700|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>-->
+
+    
+    
+    <style>
+    @font-face {
+    font-family: FuturaBook;
+    src: url(fonts/Futura_LT/FuturaLT-Book.ttf) format("truetype");
+    }
+    
+    @font-face {
+    font-family: FuturaLight;
+    src: url(fonts/Futura_LT/FuturaLT-Light.ttf) format("truetype");
+    }
+    
+    @font-face {
+    font-family: Futura;
+    src: url(fonts/Futura_LT/FuturaLT.ttf) format("truetype");
+
+  
+  
+    body { 
+        font-family: FuturaLight;
+    }
+         
+         
+         
+      .faqHeader {
+        font-size: 27px;
+        margin: 20px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "e072"; /* "play" icon */
+        float: right;
+        color: #F58723;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }
+    
+    h10
+    {
+        font-size: 18px;
+        font-family: 'Futura';
+        
+    }
+    
+    
+    h11
+    {
+        /*padding: 10px 16px;*/
+        padding-top: 10px;
+        /*padding-right: 16px;*/
+        padding-bottom: 10px;
+        /*padding-left: 16px;*/
+        font-size: 22px;
+        font-family: 'Futura';
+    }
+    
+    faqQ
+    {
+        font-size: 20px;
+        color: #174770;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+    
+    faqA
+    {
+        font-size: 18px;
+        color: black;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    
+    
+    h1
+    {
+         color: white;
+         font-size: 55px;
+         font-family: 'Futura';
+    }
+    
+    
+     h2
+    {
+        color: white;
+        font-size: 40px;
+        font-family: 'Futura';
+    }
+    
+    h7
+    {
+        color: white;
+        font-size: 44px;
+        letter-spacing: 8px;
+        font-stretch: ultra-expanded;
+        font-family: 'FuturaLight';
+    
+    }
+    
+    
+    
+    h5
+    {
+        color: white;
+        font-size: 25px;
+        letter-spacing: 2px;
+        font-family: 'FuturaLight';
+    }
+    
+    
+    .btn-dark
+    {
+     border-radius: 6px; 
+     background-color: lightgray;
+    }
+   
+    .btn-try
+    {
+       border-radius: 0px; 
+/*       background-color: #174770;*/
+       background-color: #174770;
+    }
+    
+    
+    .navbar.transparent.navbar-inverse .navbar-inner {
+        background: rgba(0,0,0,0.4);
+     }
+     
+   .navbar {
+   background-color: transparent;
+   background: transparent;
+   border-color: transparent;
+}
+
+
+
+/*.navbar {
+    position: relative;*/
+/*}
+*/.brand {
+    position: absolute;
+    left: 50%;
+    margin-left: -90px; /*!important;   50% of your logo width */
+    margin-top: 5px;
+    display: block;
+}
+
+.navbar li { color: #72839F;; } 
+    
+
+
+
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 180px;
+        text-align: center;
+        background-color: transparent;
+    }
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+    }
+
+
+.dropdown-menu
+{
+    background-color: black;
+    /*background-color: transparent;*/
+}
+
+.dropdown-menu>li>a:hover {
+  color: #262626;
+  text-decoration: none;
+  background-color: #337AB7;
+    
+}
+
+</style>
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+<body>
+
+    
+    
+    
+    
+<!--     Navigation 
+-->    <a id="menu-toggle" href="#" class="btn btn-dark btn-try btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle" ><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top"  onclick = $("#menu-close").click(); >E&bull;RIVE</a>
+            </li>
+            <li>
+                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+            </li>
+            <li>
+                <a href="#process" onclick = $("#menu-close").click(); >How it works</a>
+            </li>
+            
+            <li>
+                <a href="#plans" onclick = $("#menu-close").click(); >Plans</a>
+            </li>
+            <li>
+                <a href="#faq" onclick = $("#menu-close").click(); >Frequently asked questions</a>
+            </li>
+         </ul>
+    </nav>
+    
+    
+    
+
+<!-- <div class="navbar transparent navbar-inverse navbar-fixed-top">    
+<nav class="navbar navbar-default navbar-fixed-top navbar-inner" role="navigation">
+          <div style="width: 95%; color: white;" class="container">
+             Brand and toggle get grouped for better mobile display 
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <div style="color: white; font-size: 55px; "  class="container">
+                          <div style="color: white; font-size: 48px;float: left;" class='container-fluid navbar-brand navbar-brand-centered'>
+                              <span style='position: relative;float: left; letter-spacing: 5px;'>E</span><span style='position: relative;float: left;font-size: 5px; letter-spacing: 5px;'>&bull; </span><span style='position: relative;float: left; letter-spacing: 5px;'>RIVE</span>
+                          </div>
+                      </div>
+            </div>
+
+                    
+                    
+                    
+                    
+                    
+             Collect the nav links, forms, and other content for toggling 
+            <div class="collapse navbar-collapse" id="navbar-brand-centered">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a style="color: white;" href="join.html">JOIN NOW</a></li>
+                <li><a style="color: white;"  href="login.html">LOGIN</a></li>
+                <li class="dropdown">
+                  <a style="color: white;" href="#" class="dropdown-toggle" data-toggle="dropdown">Navigate <i class="fa fa-caret-down"></i>    </a>
+                  <ul  class="dropdown-menu" role="menu">
+                    <li>
+                    <a style="color: white;" href="#top" >Home</a>
+                    </li>
+                    <li>
+                        <a style="color: white;" href="#process" >How it works</a>
+                    </li>
+
+                    <li>
+                        <a style="color: white;" href="#plans" >Plans</a>
+                    </li>
+                    <li>
+                        <a style="color: white;" href="#faq"  >Frequently asked questions</a>
+                    </li>
+                    <li>
+                        <a style="color: white;" href="contact.html" >Contact Us <i class="fa fa-paper-plane"></i></a>
+                    </li>
+                  </ul>
+                </li>               
+              </ul>
+            </div> /.navbar-collapse 
+          </div> /.container-fluid 
+</nav>
+ </div>-->
+    
+    
+    
+    
+    
+    
+
+    <!-- Header -->
+    <header id="top" class="header" style="background-image: url(img/prius_cropped_2.jpg)">
+        <div style="width:100%; margin-top: 1%;">
+                <center>
+            <div class="text-vertical-center">
+                <!--<h1 style="font-size: 80px; font-family: 'Open Sans Condensed'">E&bull;RIVE</h1>-->
+                <br>
+                <!--<a href="#about" class="btn btn-dark btn-lg">Find Out More</a>-->
+            </div>
+                </center>
+        </div>
+        <div style="margin-top: 12%; margin-left: 5%;">
+                <left>
+           <div class="text-vertical">
+               <h7><b>LOW COST CAR SHARING</b></h7>
+               <h5><br><b>FLEXIBLE SCHEDULING</b></h5>
+               <h5><b>LOW COST PRICING</b></h5>
+               <h5><b>INSURANCE, ELECTRICITY, MILES & MAINTENANCE INCLUDED</b></h5>
+               <h5><b>ZERO EMISSION & HYBRID VEHICLES AVAILABLE</b></h5>
+               <h5><b>NO ANNUAL FEE. NO COMMITMENT</b><br><br></h5>
+               <a href="join.html" style="width: 200px; border-radius: 14px;" class="btn btn-default btn-lg">JOIN NOW</a>
+           </div>
+               </left>
+       </div>
+        
+        
+    
+        
+        
+    </header>
+
+
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <section id="process" class="services bg-primary" style='color: graytext; background-color: white;'>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2 style="color: #174770;">HOW IT WORKS</h2>
+                    <h5 style="color: #174770;">We like simplicity</h5>
+                    <!--<hr class="small">-->
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                            <span class="fa-stack fa-4x" style='color: white;'>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-users fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong><b style="color: #174770;">1.</b> JOIN</strong>
+                                </h4>
+                                <p><a href="join.html"><b style="color: rgb(255, 167, 1);">Apply now!</b></a> You'll get your E-RIVE Card that unlocks our entire fleet of gas and electric E-RIVE cars.</p>
+                                <!--<a href="#" class="btn btn-light">Learn More</a>-->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x" style='color: white;'>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-calendar-o fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong><b style="color: #174770;">2.</b> RESERVE</strong>
+                                </h4>
+                                <p>Book an E-RIVE for one of the three daily shifts.<br><br></p>
+                                <!--<a href="#" class="btn btn-light">Learn More</a>-->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x" style='color: white;'>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-credit-card fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong><b style="color: #174770;">3.</b> GET IN</strong>
+                                </h4>
+                                <p>Walk to the car and hold your E-RIVE card to the windshield. The doors will open and you're off!</p>
+                                <!--<a href="#" class="btn btn-light">Learn More</a>-->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x" style='color: white;'>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-car fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong><b style="color: #174770;">4.</b> DRIVE</strong>
+                                </h4>
+                                <p>At the end of your shift, return the car. You're all done! <br></p>
+                                <!--<a href="#" class="btn btn-light">Learn More</a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+        <!--Plans--> 
+   
+
+
+
+    <!-- Footer -->
+    <footer style='background-color: lightgray;'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa  fa-google-plus fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa  fa-instagram fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>                        
+                    </ul>
+<!--                    <h4><strong>E-RIVE LLC</strong>
+                    </h4>
+                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:info@e-rive.com">info@e-rive.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    
+                    <hr class="small">-->
+                    <p class="text-muted">Copyright &copy; 2015 E-RIVE LLC, All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname === this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+
+</body>
+
+</html>

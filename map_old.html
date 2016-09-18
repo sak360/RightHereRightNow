@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Group 6 -->
+<head>
+    <title>Right Here!!Right Now!!</title>
+
+    <link
+    rel="stylesheet"
+    href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+    <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/leaflet-routing-machine.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/mapstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/leaflet-sidebar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/p3.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <style>
+      .barchart {
+        height : 500px;
+        width :500px;
+      }
+
+      .streetlightbarchart{
+        height : 500px;
+        width : 500px;
+      }
+
+      .crimebarchart{
+        height: 500px;
+        width : 500px;
+      }
+
+      .foodinspectionchart{
+        height: 500px;
+        width : 500px;
+      }
+    </style>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="js/ClassExtension.js"></script>
+    <script src="http://coffeescript.org/extras/coffee-script.js"></script>
+
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <script src="js/jquery.js"></script>
+<!--
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+-->
+
+<script src="js/leaflet-editable-polyline.js"></script>
+
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/leaflet.awesome-markers.js"></script>
+<script src="js/leaflet-routing-machine.js"></script>
+<script src="js/moment.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+</script>
+    <link rel="stylesheet" type="text/css" href="css/twitterCheck.css">
+</head>
+
+<body onload="init()">
+    <div id="container" style="position: absolute;width: 100%;height: 100%;border-right: thin solid #d3d3d3">
+
+        <div id="MapSegment" style="position: relative;float: left;height: 100%;width: 100%">
+            <div id="weather">
+              <img id='wicon' src='images/spinner.gif'/><br><span id="date"></span><br>
+              <p id="temp" class='inline'></p>/<p id="tempc" class='inline'></p>
+              
+          </div>
+          <div id="controls">
+           <form id="UIMode">
+               How would you like to travel?
+               <div id="UIToggle">
+                   <input type="radio" id="points_select" name="radio"><label for="points_select">Points</label>
+                   <input type="radio" id="paths_select" name="radio"><label for="paths_select">Paths</label>
+                   <!--<input type="button" id="clear_map" name="button1"><label for="clear_map">Clear Map</label>-->
+               </div>
+           </form>
+           <script>
+               d3.select("#points_select").on("click", function() {
+                   window.UIMode = "points";
+                   d3.select("#points-control").attr("style", "visibility: visible")
+                   d3.select("#paths-control").attr("style", "visibility: hidden")
+               });
+               d3.select("#paths_select").on("click", function() {
+                   window.UIMode = "paths";
+                   d3.select("#points-control").attr("style", "visibility: hidden")
+                   d3.select("#paths-control").attr("style", "visibility: visible")
+                   
+               });
+               $(function() {
+                   $( "#UIToggle" ).buttonset();
+               });
+           </script>
+
+           <div id="points-control" style="visibility: hidden">
+               <table>
+                 <tr>
+                    <td style="padding: 5px;">
+                       Pick two points by clicking on the map<br />
+                       then click to show data
+                   </td>
+                   <td>
+                       <button onclick="mapContainer.getPolygonDataFunc()">Draw A Box</button>
+                   </td>
+                   <td>
+                        <button onclick="clearMap()">Clear Data</button>
+                   </td>
+               </tr>
+           </table>
+       </div>
+        <div id="paths-control" style="visibility: hidden">
+            <table>
+                <tr>
+                    <td style="padding: 5px;">
+                       <!-- Commented by Sharad for PolyLine Generalization on 12th Nov
+                       Drag the line to create any path<br />you like, 
+                       then click to show data
+                       -->
+                       Pick two Points
+                    </td>
+                    <td>
+                        <input type="button"
+                            value="Draw Route"
+                            onclick="callPolyline()">
+                    </td>
+                    <td> 
+                        <input type="button" 
+                               value="Query Path" 
+                               onclick="mapContainer.getPolyLineFunc()">
+                        </input>
+                    </td> 
+                    <td>
+                        <button onclick="clearMap()">Clear Data</button>
+                   </td>
+                </tr>
+            </table>
+        </div>
+<script>
+    $(function() {
+      $("input[type=button], button").button()
+  });
+</script>
+</div>
+<div id="map" style="height: 100%;"></div>
+<div id="sidebar-right" class="sidebar collapsed">
+  <!-- Nav tabs -->
+  <ul class="sidebar-tabs" role="tablist">
+    <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+    <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+    <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+    <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+</ul>
+<!-- Tab panes -->
+<div class="sidebar-content active">
+    <div class="sidebar-pane" id="home">
+      <h1>sidebar-v2</h1>
+      <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
+      <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+  </div>
+  <div class="sidebar-pane" id="profile">
+    <h1>Profile</h1>
+    <input type="button" onclick = "potHoleApp.callChicagoData()" value="call"></input>
+    <div id="barchart" class="barchart">
+    </div>
+    <div id="crimechart" class="barchart">
+    </div>
+    <div id="streetlightbarchart" class="streetlightbarchart">
+    ss
+    </div>
+    <div id="foodinspectionchart" class="barchart">
+    </div>
+  </div>
+  <div class="sidebar-pane" id="messages"><h1>Twitter</h1>
+    <input type="button" value="Show tweets" onclick="TwitterCall()"></input>
+    <input type="button" value="Show tweets" onclick="clearTwitterCall()"></input>
+    <div id="twitter" class="twitter">
+      <h3>Top Tweets for Chicago</h3>
+      <div class="crime" id="crime">
+      This is crime data
+      </div>
+      <h3> Top Tweets for 311 </h3>
+      <div class="fetch" id="fetch">
+      This is 311 data
+      </div>
+      <h3> Top Tweets about Food in Chicago</h3>
+      <div class="food" id="food">
+      This is chicago Food
+      </div>
+    </div>
+  </div>
+<div class="sidebar-pane" id="settings">
+  <h1>Libraries Used:</h1>
+  <p>Third party libraries and tools we used include the following:</p>
+  <h3>d3</h3>
+  <h3>leaflet</h3>
+  <h3>leaflet-sidebar</h3>
+  <h3>jquery (layout + UI only)</h3>
+  <h3>jquery UI (layout + UI only)</h3>
+  <h3>bootstrap (layout + UI only)</h3>
+  <h3>font awesome icons</h3>
+  <h3>moment.js</h3>
+  <h3>weather underground API</h3>
+  <H3>www.jasonmayes.com </H3>
+
+</div>
+</div>
+</div>
+<div id="sidebar-map" class="sidebar-map"></div>
+
+</div>
+
+<div>
+    <script>    
+                    //console.log("Calling the map js");
+                    
+                    var mapContainer;
+
+
+                    /////////////////////
+                    var potHoleApp;
+                    var abandonVehicleApp;
+                    var streetLightApp;
+                    var recentCrimeApp;
+                    var divvyApp;
+                    var marLat1;
+                    var marLng1;
+                    var marLat2;
+                    var marLng2;
+                    var mapCounter = 1;
+                    // Box Mode Markers
+                    var LMarker1 ;
+                    var LMarker2 ;
+
+                    //console.log('Inside Init1');
+
+                    function init() {
+                        console.log('Inside Init2');
+
+                        mapContainer = new mapContainer();
+                        mapContainer.init('map');
+
+                        // Weather App
+                        // = new USweatherApp();
+                        //usweatherApp.init();
+
+                        // Pothole App
+                        potHoleApp = new PotHoleApp();
+                        potHoleApp.init();
+
+                        // StreetLight App
+                        streetLightApp = new StreetLightApp();
+                        streetLightApp.init();
+
+                        // Abandoned Vehicle App
+                        abandonVehicleApp = new AbandonVehicleApp();
+                        abandonVehicleApp.init();
+
+                        // Recent Crime App
+                        recentCrimeApp = new RecentCrimeApp();
+                        recentCrimeApp.init();
+
+            						// Divvy App
+            						divvyApp = new DivvyStationApp();
+            						divvyApp.init();
+
+                        // Rest Poi
+                        restPOIApp = new RestPOIApp();
+                        restPOIApp.init();
+
+                        // Active Restaurants
+                        restaurantApp = new RestaurantApp();
+                        restaurantApp.init();
+
+                        // CTA Bus Tracker
+                        ctaTrackerApp = new CTATrackerApp();
+                        ctaTrackerApp.init();
+
+                        // Recent Crime
+
+                        //drawBarChartApp = new DrawBarChartApp;
+                        //drawBarChartApp.startup("#barchartMaxInboundOutbound");
+
+                        // Path Mode Markers
+                        var LPathMarker1;
+                        var LPathMarker2;
+
+                        //mapContainer.createPolyLine();
+
+                        /*$( "#points_select" ).click(function() {
+                            if(LMarker1!=null){
+
+                                mapContainer.marLat1 = "";
+                                mapContainer.marLng1 = "";
+                                mapContainer.marLat2 = "";
+                                mapContainer.marLng2 = "";
+
+                                mapCounter = 1;
+                            }
+                            if(LMarker2!=null){
+                                mapContainer.marLat1 = "";
+                                mapContainer.marLng1 = "";
+                                mapContainer.marLat2 = "";
+                                mapContainer.marLng2 = "";
+                                mapCounter =1;
+                            }
+                        });
+                        */
+                        mapContainer.map.on('click', function(e){
+
+                            if(mapCounter == 1){
+
+                                mapContainer.marLat1 = e.latlng.lat;
+                                mapContainer.marLng1 = e.latlng.lng;
+                                mapContainer.custlatlng1 = e.latlng;
+
+                                LMarker1 = L.marker(e.latlng,{
+                                    riseOnHover: true,
+                                    //draggable: true,
+                                }).addTo(mapContainer.map);
+                            }
+                            else if(mapCounter == 2){
+
+                                mapContainer.marLat2 = "";
+                                mapContainer.marLng2 = "";
+                                mapContainer.marLat2 = e.latlng.lat;
+                                mapContainer.marLng2 = e.latlng.lng;
+                                mapContainer.custlatlng2 = e.latlng;
+
+                                LMarker2 = L.marker(e.latlng,{
+                                    riseOnHover: true,
+                                    //draggable: true,
+                                }).addTo(mapContainer.map);
+                            }
+                            else if (mapCounter >=3){
+                                mapCounter = 0;
+                                console.log(LMarker2);
+                                console.log(LMarker1);
+                                mapContainer.map.removeLayer(LMarker2);
+                                mapContainer.map.removeLayer(LMarker1);
+                            }
+
+                            mapCounter = mapCounter + 1;
+
+                        });
+
+                        //////////////////////////////////////
+
+
+                        console.log('after mapContainer');
+
+                        console.log('Inside Init3');
+                    }
+
+                    function callCompute(){
+                        mapContainer.potHoleFunc(marLat1,marLng1,marLat2,marLng2);
+                    }
+
+                    function callPolyline(){
+                            mapContainer.map.removeLayer(LMarker2);
+                            mapContainer.map.removeLayer(LMarker1);
+                        mapContainer.createPolyLine();
+                    }
+
+                    function clearMap(){
+                        console.log(LMarker2);
+                        console.log(LMarker1);
+
+                        mapContainer.map.removeLayer(LMarker2);
+                        mapContainer.map.removeLayer(LMarker1);
+                        mapCounter = 1;
+                        mapContainer.clearMapFunc();
+                        //$(".leaflet-objects-pane").add("div").addClass(".leaflet-marker-pane");
+                        //$(".leaflet-objects-pane").add("div").addClass(".leaflet-shadow-pane");
+                    }
+    </script>
+    <script type="text/javascript">
+
+    /*********************************************************************
+     *  #### Twitter Post Fetcher v12.0 ####
+     *  Coded by Jason Mayes 2013. A present to all the developers out there.
+     *  www.jasonmayes.com
+     *  Please keep this disclaimer with my code if you use it. Thanks. :-)
+     *  Got feedback or questions, ask here: 
+     *  http://www.jasonmayes.com/projects/twitterApi/
+     *  Github: https://github.com/jasonmayes/Twitter-Post-Fetcher
+     *  Updates will be posted to this site.
+     *********************************************************************/
+      
+         var twitterFetcher=
+ function(){
+  function w(a){return a.replace(/<b[^>]*>(.*?)<\/b>/gi,function(a,f){return f}).replace(/class=".*?"|data-query-source=".*?"|dir=".*?"|rel=".*?"/gi,"")}function m(a,c){for(var f=[],g=new RegExp("(^| )"+c+"( |$)"),h=a.getElementsByTagName("*"),b=0,k=h.length;b<k;b++)g.test(h[b].className)&&f.push(h[b]);return f}var x="",k=20,y=!0,p=[],s=!1,q=!0,r=!0,t=null,u=!0,z=!0,v=null,A=!0,B=!1;return{fetch:function(a){void 0===a.maxTweets&&(a.maxTweets=20);void 0===a.enableLinks&&
+    (a.enableLinks=!0);void 0===a.showUser&&(a.showUser=!0);void 0===a.showTime&&(a.showTime=!0);void 0===a.dateFunction&&(a.dateFunction="default");void 0===a.showRetweet&&(a.showRetweet=!0);void 0===a.customCallback&&(a.customCallback=null);void 0===a.showInteraction&&(a.showInteraction=!0);void 0===a.showImages&&(a.showImages=!1);if(s)p.push(a);else{s=!0;x=a.domId;k=a.maxTweets;y=a.enableLinks;r=a.showUser;q=a.showTime;z=a.showRetweet;t=a.dateFunction;v=a.customCallback;A=a.showInteraction;B=a.showImages;
+      var c=document.createElement("script");c.type="text/javascript";c.src="//cdn.syndication.twimg.com/widgets/timelines/"+a.id+"?&lang="+(a.lang||"en")+"&callback=twitterFetcher.callback&suppress_response_codes=true&rnd="+Math.random();document.getElementsByTagName("head")[0].appendChild(c)}},callback:function(a){var c=document.createElement("div");c.innerHTML=a.body;"undefined"===typeof c.getElementsByClassName&&(u=!1);a=[];var f=[],g=[],h=[],b=[],n=[],e=0;if(u)for(c=c.getElementsByClassName("tweet");e<
+        c.length;){0<c[e].getElementsByClassName("retweet-credit").length?b.push(!0):b.push(!1);if(!b[e]||b[e]&&z)a.push(c[e].getElementsByClassName("e-entry-title")[0]),n.push(c[e].getAttribute("data-tweet-id")),f.push(c[e].getElementsByClassName("p-author")[0]),g.push(c[e].getElementsByClassName("dt-updated")[0]),void 0!==c[e].getElementsByClassName("inline-media")[0]?h.push(c[e].getElementsByClassName("inline-media")[0]):h.push(void 0);e++}else for(c=m(c,"tweet");e<c.length;)a.push(m(c[e],"e-entry-title")[0]),
+      n.push(c[e].getAttribute("data-tweet-id")),f.push(m(c[e],"p-author")[0]),g.push(m(c[e],"dt-updated")[0]),void 0!==m(c[e],"inline-media")[0]?h.push(m(c[e],"inline-media")[0]):h.push(void 0),0<m(c[e],"retweet-credit").length?b.push(!0):b.push(!1),e++;a.length>k&&(a.splice(k,a.length-k),f.splice(k,f.length-k),g.splice(k,g.length-k),b.splice(k,b.length-k),h.splice(k,h.length-k));c=[];e=a.length;for(b=0;b<e;){if("string"!==typeof t){var d=new Date(g[b].getAttribute("datetime").replace(/-/g,"/").replace("T",
+        " ").split("+")[0]),d=t(d);g[b].setAttribute("aria-label",d);if(a[b].innerText)if(u)g[b].innerText=d;else{var l=document.createElement("p"),C=document.createTextNode(d);l.appendChild(C);l.setAttribute("aria-label",d);g[b]=l}else g[b].textContent=d}d="";y?(r&&(d+='<div class="user">'+w(f[b].innerHTML)+"</div>"),d+='<p class="tweet">'+w(a[b].innerHTML)+"</p>",q&&(d+='<p class="timePosted">'+g[b].getAttribute("aria-label")+"</p>")):a[b].innerText?(r&&(d+='<p class="user">'+f[b].innerText+"</p>"),d+=
+      '<p class="tweet">'+a[b].innerText+"</p>",q&&(d+='<p class="timePosted">'+g[b].innerText+"</p>")):(r&&(d+='<p class="user">'+f[b].textContent+"</p>"),d+='<p class="tweet">'+a[b].textContent+"</p>",q&&(d+='<p class="timePosted">'+g[b].textContent+"</p>"));A&&(d+='<p class="interact"><a href="https://twitter.com/intent/tweet?in_reply_to='+n[b]+'" class="twitter_reply_icon">Reply</a><a href="https://twitter.com/intent/retweet?tweet_id='+n[b]+'" class="twitter_retweet_icon">Retweet</a><a href="https://twitter.com/intent/favorite?tweet_id='+
+      n[b]+'" class="twitter_fav_icon">Favorite</a></p>');B&&void 0!==h[b]&&(l=h[b],void 0!==l?(l=l.innerHTML.match(/data-srcset="([A-z0-9%_\.-]+)/i)[0],l=decodeURIComponent(l).split('"')[1]):l=void 0,d+='<div class="media"><img src="'+l+'" alt="Image from tweet" /></div>');c.push(d);b++}if(null===v){a=c.length;f=0;g=document.getElementById(x);for(h="<ul>";f<a;)h+="<li>"+c[f]+"</li>",f++;g.innerHTML=h+"</ul>"}else v(c);s=!1;0<p.length&&(twitterFetcher.fetch(p[0]),p.splice(0,1))}}}();
+
+
+          //533705700443029504 --Crime
+          // 533703091904733184 --311
+          // 533705815417298945   -- food
+          function clearTwitterCall(){
+              document.getElementById('crime').innerHTML = "";
+              document.getElementById('fetch').innerHTML = "";
+              document.getElementById('food').innerHTML = "";
+          }
+        function TwitterCall(){ 
+          var crimeFetch = {
+            "id": '533705700443029504',
+            "domId": 'crime', // Div ID 
+            "maxTweets": 5,
+            "enableLinks": true,
+            "showImages": true
+          };
+          twitterFetcher.fetch(crimeFetch);
+
+
+          var c311Fetch = {
+            "id": '533703091904733184',
+            "domId": 'fetch', // DIV ID
+            "maxTweets": 5,
+            "enableLinks": true,
+            "showImages": true
+          };
+          twitterFetcher.fetch(c311Fetch);
+
+          var cFoodFetch = {
+            "id": '533705815417298945',
+            "domId": 'food', // DIV ID
+            "maxTweets": 5,
+            "enableLinks": true,
+            "showImages": true
+          };
+          twitterFetcher.fetch(cFoodFetch);
+        }
+    </script>
+    <script type="text/javascript"></script>
+    <script src="js/leaflet-sidebar.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/mapContainer.js"></script>
+    <script src="js/PotHoleApp.js"></script>
+    <script src="js/StreetLightApp.js"></script>
+    <script src="js/AbandonVehicleApp.js"></script>
+    <script src="js/RecentCrimeApp.js"></script>
+    <script src="js/DivvyStationApp.js"></script>
+    <script src="js/RestPOIApp.js"></script>
+    <script src="js/RestaurantApp.js"></script>
+    <script src="js/suncalc.js"></script>
+    <script src="js/CTATracker.js"></script>
+
+    <!--<script type="text/javascript" src="js/twitterPost.js"></script>-->
+
+                <!--<script src="js/sprite.coffee"></script>-->
+                <!-- <script src="js/script.coffee"></script>-->
+            </div>
+        </div>
+    </body>
+    </html>

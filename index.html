@@ -1,0 +1,656 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/index.css" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/jquery-ui.dark.css">
+  <script src="js/jquery.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  </head>
+  <body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <h1>CS424 Project 3 - Fall 2014</h1>
+        <div class="slogan">Right Here! Right Now!</div>
+      </div>
+    </div>
+		    <h3><a href="map.html">View Application!</a></h3>
+            <script>
+            $(function() {
+                $( "#tabs" ).tabs();
+            });
+            </script>
+            <div id="tabs">
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">The Team</a></li>
+                <li><a href="#how">How-To</a></li>
+                <li><a href="#interesting">Interesting Findings</a></li>
+                <li><a href="#data">Project Data</a></li>
+                <li><a href="#sourcecode">Source Code & Installation</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+              </ul>
+          
+              <div id="site_content" style="background-color: rgba(0,0,0,0.6)">
+              <div id="content">
+                <div id="home">
+                  <br/> 
+                    <p>
+                    <b>Right Here! Right Now!</b> is the third project in the course <b>CS 424: Visualization and Visual Analytics</b>under Prof. Andrew Johnson at University of Illinois at Chicago(UIC). The project is continuation of the ongoing focus of the class on demographics and communities in Chicago, Illinois. Project 3 is called Right Here! Right Now! as our primary focus this time is 311 Data offered by the City of Chicago alongside public transit systems available to the public and how to efficiently show that data to the user and let the user filter information from it. 
+                    <br>
+                    <b>Please check out the video of the application running : </b>
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/iUaNBtnrYIQ" frameborder="0" allowfullscreen></iframe>
+                    </p>
+
+                    Please find below the project link with the details and requirements about the project listed.
+                    <br /><br />
+                    Project 3: <a href="http://www.evl.uic.edu/aej/424/14Fproject3.html"><b>CS424 P3 Home</b></a>
+                    <br />
+                  <br/>
+                </div>
+                <div id="about">
+                   <h2>About the Project</h2>
+                    <p>
+                    <b>Right Here! Right Now!</b> is the third project in the CS 424 : Visualization and Visual Analytics course at University of Illinois at Chicago(UIC). The focus of the project is to make an interactive application displaying the 311 data available from city of Chicago and also the various transit systems like CTA Bus System and Divvy Bike Sharing System.
+                    </p>
+                    <p>
+                    The goal of the project was to create an application which can be used by an user to travel through and discover Chicago in the best possible way. To aid the user to make decisions, we give the user various types of relevant data. The data is split into various layers which can be toggled on and off so that the user always has the control over what he/she wants to explore. The Layers on our application are various types of 311 data, Divvy Bike Stations and CTA Tracker. We wanted to give the user the option of not only able to decide if his/her interests but also discover new places of interest. Along with the various points of interest, We wanted to give the user option of seeing the various public transit systems around his point of interest. <br>Listed below are the various types of views the user can show from.
+                    <br>
+                    <uL><b> Various Types of 311 Data </b>
+                    <li> Crime Commited </li>
+                    <li> Reported PotHoles</li>
+                    <li> Abandoned Vehicles</li>
+                    <li> Broken StreetLights</li>
+                    <li> Food Inspection</li>
+                    </ul>
+                    <uL><b> Modes of Transit </b>
+                        <li> CTA Bus Tracker </li>
+                        This tracker gives information about 
+                        <li> Divvy Bike Sharing Service</li>
+                    </ul>
+                    <uL><b> Active Point of Interests</b>
+                        <li> Restaurants & Taverns & Special Event Food</li>
+                        <li> Music and Dance Places </li>
+                        <li> Mobile Food License</li>
+                        <li> Outdoor Patio</li>
+                        <li> Package Goods</li>
+                        <li> Public Garage</li>
+                        <li> Public Place of Amusement</li>
+                    </ul>
+                    <ul> Other Information
+                        <li> Current Weather</li>
+                        <li> Sunrise and Sunset Functionality</li>
+                        <li> Current Time </li>
+                    </ul>
+                    </p>
+        
+                    <p>
+                    At the same time, the user may or may not care about overall city of Chicago and may be concerned about seeing information only in a certain community/neighbourhood of Chicago or maybe want to check whats available near by. For this specific purpose, We have incorporated various modes in our application. The user can choose to view information of the below given modes.
+                    <ul>Modes
+                        <li>Path Mode</li>
+                            <p> The user picks his start and ending destination points and we give the user the route along major streets. We have designed the application in such a manner that the user can even choose the path he/she wants to take by simply dragging the path and it automatically routes to the new route. To keep the data relevant, we have chosen a 2 block radius to show data along the path created. This way the user can know whether that particular route is safe or not and can actually compare between routes.</p>
+                        <li>Box Mode</li>
+                            <p> The user picks two points and the user will be able to see data in the selected box. The boundary shows the selected region. This allows the user to see data in a much larger area and see what is around and about.</p>
+                    </ul>
+                    </p>
+                    <br>
+                    <p>
+                    Along with the different layers, we have visualizations for all the 311 data which allows the user to quickly see if the statistics of the selected area versus the statistics of city of chicago. The visualizations are broken down into last week and last month so that the user can see a trend between different times and between the area and the city itself. 
+                    </p>
+                    <p>
+                    We have tried to create the application from an user's point of view and tried to incorporate things which would help the user navigate and discover new points of interest and in general give the user a sense of how the city is in the selected area. 311 data is a big deal in Chicago and it being public is a huge plus. Through our application , we hope that users have a more usable and friendly interface to access this and discover this beautiful city of Chicago.
+                <br/> 
+                <br/>
+
+              </div>
+              <div id="team">
+                  <h2>Team Members:</h2>
+                    <h3>Sharad Tanwar</h3>
+                        <img src="images/Sharad_Picture.jpg" width="300px" height="400px"/>
+                        <p> Sharad worked specifically on map features like implementation of the different layers and routing- box and path. He also worked on restriction of data through use of SodaAPI Queries and restriction of data in path mode. He also helped out in creating visualizations. 
+                        </p>
+                    <h3>Shahbaz Khan</h3>
+                        <img src="images/Shahbaz_Picture.jpg" width="300px" height="400px"/>
+                        <p>
+                        Shahbaz worked on visualizations needed for statistics in the project. Shahbaz worked on documentation of the overall project and design decisions. He also implemented icons and color designs for various layers.
+                        </p>
+                    <h3>Christopher Thomas</h3>
+                        <img src="images/Dwayne-Johnson-The-Rock.jpg" width="400px" height="400px"/>
+                        <p>Christopher worked worked on graphs and documentation needed for the project<br />
+                        </p>
+                    <h3>__mt__</h3>
+                        <img src="images/teeth.jpg" width="300px" height="400px"/>
+                        <p>
+                        Michael worked majorly on the UI elements and the design decisions of the overall project. He also implemented the refresh functionality of the complete project and notification center to display any new information coming up. He also implemented with leaflet routing machine and worked out chinks in the application. 
+                        </p>
+                    <br/> 
+                    <br/>
+
+              </div>
+              <div id="how">
+                <h2>How-To</h2>
+                <br>
+                <p>The following is an immersive step-by-step look into the use of the application, along with a look at all its features.</p>
+                <img src="images/how-to-pics/p1.png"/>
+                <p>Once you're on the application, you'll land on the following page, with the default view as displayed above.</p>
+                <img src="images/how-to-pics/p2.png"/>
+                <p>The first thing to notice is the control panel on the right</p>
+                <ol>
+                    <li>This is where you can find the layer control. You can use it to toggle  the following layers:</li>
+                        <ol type="a">
+                            <li>Recent Crimes (Shows reported crimes in the last month within the drawn boxed area or, around the drawn path)</li>
+                            <li>Streetlights Out  (Shows reported streetlights not working within the last month within the drawn boxed area or, around the  drawn path)</li>
+                            <li>Abandoned Cars (Shows abandoned cars in the last month within the drawn boxed area or, around the drawn path)</li>
+                            <li>Reported Potholes* (Shows reported potholes in the last month within the drawn boxed area or, around the drawn path)</li>
+                            <li>Divvy Bike Stations (Shows Divvy stations within the drawn boxed area or, around the drawn path)</li>
+                            <li>Restaurants/Bars (Shows restaurants and bars within the drawn boxed area or, around the drawn path)</li>
+                            <li>Food Inspections (Shows food inspections for eateries in the last 4 months within the drawn boxed area or, around the drawn path)</li>
+                            <li>Local Weather* (Shows local weather in the area)</li>
+                            <li>CTA Bus Tracker (Shows the location of CTA busses within the drawn boxed area or, around the drawn path)</li>
+                        </ol>
+                    <li>This is where you can toggle between different map views. The different views available are:</li>
+                        <ol type="a">
+                            <li>Ariel View</li>
+                            <li>Color View</li>
+                            <li>Map View</li>
+                        </ol>
+                    <li>This is where you choose between having a box vs. path implementation</li>
+                </ol>
+                
+                <em>*ON by default</em>
+                
+                <img src="images/how-to-pics/p3.png"/>
+                <p>[path routed to see the update window]</p>
+                <p>This is the update window. This is where the updates on the data show up as they are reflected in the map.</p>
+                
+                <img src="images/how-to-pics/p4.png"/>
+                <p>This is the weather Layer which is toggled ON by default. It shows the current temperature, the kind of weather and, the date.</p>
+                
+                <img src="images/how-to-pics/p5.png"/>
+                <p>This is the sidebar which lets you show/hide the control panel and the chart view box. You can also use it to zoom in/out on the map and, clear any selections previously made and, press the "?" button for help.</p>
+                
+                <img src="images/how-to-pics/p6.png"/>
+                <p>Right under the Weather Box display, you are able to access the twitter module</p>
+                <ol>
+                    <li>Press the "Twitter Data" button. This will open up a dropdown with the 15 latest relevant tweets.</li>
+                    <li>Each tab shows the 5 latest tweets for Crime, 311 and, Food, separately</li>
+                </ol>
+                
+                <img src="images/how-to-pics/p7.png"/>
+                <p>There are two ways to display the information from the various layers Firstly, as shown above, the user can choose to display layer information within a user-constricted area. The steps to do so are:</p>
+                <ol>
+                    <li>Choose Marker 1</li>
+                    <li>Choose Marker 2</li>
+                    <li>Press the "Draw a Box" button to geographically restrict information displayed to the selected area.</li>
+                </ol>
+                
+                <img src="images/how-to-pics/p8.png"/>
+                <p>Secondly, as shown above, the user can choose to display layer information within a 2 block radius of the path generated by the Leaflet Routing Machine between two user inputted markers. The steps to do so are:</p>
+                <ol>
+                    <li>Choose Marker 1</li>
+                    <li>Choose Marker 2</li>
+                    <li>Press the "Draw a Path" button to geographically restrict information displayed around the path generated by the Leaflet Routing Machine</li>
+                </ol>
+                
+                <img src="images/how-to-pics/p9.png"/>
+                <p>Additionally, for the path implementation of the application, because the Leaflet Routing Machine creates a path between two user defined points automatically, the application also lets the user re-route according to their preferences. The user may, for example, want to avoid certain areas that according to the map, have higher crime activity. The way to do so is:</p>
+                <ol>
+                    <li>Drag the route to wherever you would like to reroute through</li>
+                    <li>Press the "Update Route button" to update the data being displayed</li>
+                </ol>
+                
+                <h3>LAYER CONTROL:</h3>
+                <p style="text-decoration: underline;">Reported Potholes</p>
+                <img src="images/how-to-pics/p10.png"/>
+                <p>The first layer, the one that is toggled on by default is the one for "Reported Potholes." This displays the reported potholes within the confined box (as shown above) or, around a drawn path. The layer displays 2 variations of the icon to let the user distinguish between potholes reported within the last 2 weeks vs. those reported in the last month.</p>
+                
+                <img src="images/how-to-pics/p11.png"/>
+                <ol>
+                    <li>The pothole icon with the red trimming marks potholes reported within the last 2 weeks.</li>
+                    <li>The pothole icon with the black trimming marks potholes reported within the last month.</li>
+                </ol>
+                <img src="images/how-to-pics/p12.png"/>
+                <p>Every marker has information about the pothole bound to it. On clicking on a mapped icon, a popup specifies:</p>
+                <ol>
+                    <li>Date (when the pothole was reported)</li>
+                    <li>Status (whether or not the inquiry has been completed)</li>
+                    <li>Message to user regarding whether or not the pothole has been filled</li>
+                </ol>
+                
+                <p style="text-decoration: underline;">Recent Crimes</p>
+                <img src="images/how-to-pics/p13.png"/>
+                <p>The "Recent Crimes" layer, when toggled ON, displays the reported crimes within the confined box (as shown above) or, around a drawn path.</p>
+                <img src="images/how-to-pics/p14.png"/>
+                <p>The layer displays 2 variations of the icon to let the user distinguish between crimes reported within the last 2 weeks vs. those reported in the last month.</p>
+                <ol>
+                    <li>The crimes icon with the black trimming marks recent crimes reported within the last month</li>
+                    <li>The crimes icon with the red trimming marks recent crimes reported within the last 2 weeks</li>
+                </ol>
+                <img src="images/how-to-pics/p15.png"/>
+                <p>Every marker has information about the crime bound to it. On clicking on a mapped icon, a popup displays:</p>
+                <ol>
+                    <li>Date Reported (when the crime was reported)</li>
+                    <li>Description (The primary description of the crime, as it was reported)</li>
+                    <li>Street (The street address of where the crime was reported)</li>
+                    <li>Message of caution to the user</li>
+                </ol>
+                
+                <p style="text-decoration: underline;">Abandoned Cars</p>
+                <img src="images/how-to-pics/p16.png"/>
+                <p>The "Abandoned Cars" layer, when toggled ON, displays the reported abandoned cars within the confined box (as shown above) or, around a drawn path. The layer displays 2 variations of the icon to let the user distinguish between crimes reported within the last 2 weeks vs. those reported in the last month.</p>
+                <img src="images/how-to-pics/p17.png"/>
+                <ol>
+                    <li>The abandoned vehicle icon with the red trimming marks abandoned vehicles reported within the last 2 weeks</li>
+                    <li>The abandoned vehicle icon with black trimming marks abandoned vehicles reported within the last month</li>
+                </ol>
+                <img src="images/how-to-pics/p18.png"/>
+                <p>Every marker has information about the crime bound to it. On clicking on a mapped icon, a popup displays:</p>
+                <ol>
+                    <li>Date Reported (when the abandoned vehicle was reported)</li>
+                    <li>Status (Whether or not the inquiry is still open or has been closed)</li>
+                    <li>Street (The street address of where the abandoned vehicle was reported)</li>
+                    <li>Message of caution to the user</li>
+                </ol>
+                
+                <p style="text-decoration: underline;">Streetlights Out</p>
+                <img src="images/how-to-pics/p19.png"/>
+                <p>The "Streetlights Out" layer, when toggled ON, displays the reported streetlights outage within the confined box (as shown above) or, around a drawn path. The layer displays 2 variations of the icon to let the user distinguish between outages reported within the last 2 weeks vs. those reported in the last month. </p>
+                <img src="images/how-to-pics/p20.png"/>
+                <ol>
+                    <li>The streetlights out icon on the red marker marks streetlights out reported within the last 2 weeks</li>
+                    <li>The streetlights out icon on the black marker marks streetlights out reported within the last month</li>
+                </ol>
+                <img src="images/how-to-pics/p21.png"/>
+                <p>Every marker has information about the streetlights outage bound to it. On clicking on a mapped icon, a popup displays:</p>
+                <ol>
+                    <li>Date Reported (when the streetlight outage was reported)</li>
+                    <li>Status (Whether or not the inquiry is still open or has been closed)</li>
+                    <li>Street (The street address of where the outage was reported)</li>
+                    <li>Message indicating whether or not the lights were fixed</li>
+                </ol>
+                
+                <p style="text-decoration: underline;">Divvy Bike Stations</p>
+                <img src="images/how-to-pics/p22.png"/>
+                <p>The "Divvy Bike Stations" layer, when toggled ON, displays the divvy bike stations within the confined box (as shown above) or, around a drawn path. The layer gets refreshed every __ seconds so real time changes are reflected in the application.</p>
+                <img src="images/how-to-pics/p23.png"/>
+                <p>The divvy stations are marked on the map with the divvy logo.</p>
+                <img src="images/how-to-pics/p24.png"/>
+                <p>Every marker has information about the crime bound to it. On clicking on a mapped icon, a popup displays:</p>
+                <ol>
+                    <li>Location (where the station is located)</li>
+                    <li>Available Bikes (the number of bikes currently available at the station)</li>    
+                    <li>Available Docks (The number of free docks available to park the bikes)</li>
+                </ol>
+                
+                <p style="text-decoration: underline;">Points of Interest</p>
+                <img src="images/how-to-pics/p25.png"/>
+                <p>The "Points of Interest" layer, when toggled ON, displays the POIs within the confined box (as shown above) or, around a drawn path. The layer shows markers for the following:</p>
+                <ul>
+                    <li>Taverns</li>
+                    <li>Eateries</li>
+                    <li>Packaged Goods (ie. groceries, alcohol etc.)</li>
+                    <li>Outdoor attractions (i.e. outdoor attractions and public places of amusement)</li>
+                    <li>Garages</li>
+                    <li>Musical destinations</li>
+                </ul>
+                <img src="images/how-to-pics/p26.png"/>
+                <p>The eateries are marked on the map with the above logo.</p>
+                <img src="images/how-to-pics/p27.png"/>
+                <p>The packaged goods places are marked on the map with the above logo.</p>
+                <img src="images/how-to-pics/p28.png"/>
+                <p>The taverns are marked on the map with the above logo.</p>
+                <img src="images/how-to-pics/p29.png"/>
+                <p>The garages are marked on the map with the above logo.</p>
+                <img src="images/how-to-pics/p30.png"/>
+                <p>The outdoor attractions are marked on the map with the above logo.</p>
+                <img src="images/how-to-pics/p31.png"/>
+                <p>Every marker has information about the POI bound to it. On clicking on a mapped icon, a popup displays:</p>
+                <ol>
+                    <li>Name (name of the establishment)</li>
+                    <li>Type (the type of the establishment)</li>
+                    <li>Street (street address)</li>
+                </ol>
+                
+                <p style="text-decoration: underline;">Food Inpsections</p>
+                <img src="images/how-to-pics/p32.png"/>
+                <p>The "Food Inspections" layer, when toggled ON, displays the food inspections for the last 4 months within the confined box (as shown above) or, around a drawn path. The layer shows markers for the following:</p>
+                <ul>
+                    <li>Failed Inspections</li>
+                    <li>Passed Inspections</li>
+                </ul>
+                <img src="images/how-to-pics/p33.png"/>
+                <ol>
+                    <li>The red thumbs-down icon marks places that failed their food inspections within the last 4 months</li>
+                    <li>The blue thumbs-up icon marks places that passed their food inspections within the last 4 months</li>
+                </ol>
+                <img src="images/how-to-pics/p34.png"/>
+                <ol>
+                    <li>Restaurant name (name of the inspected restaurant)</li>
+                    <li>Inspection Date</li>
+                    <li>Status (pass/fail)</li>
+                    <li>Risk Level (a rating of the level of risk from 1-3 with 1 being the worst)</li>
+                    <li>Street Address</li>
+                </ol>
+                
+                <p style="text-decoration: underline;">CTA Bus Tracker</p>
+                <img src="images/how-to-pics/p35.png"/>
+                <p>The "CTA Bus tracker" layer, when toggled ON, displays the CTA busses within the confined box (as shown above) or, around a drawn path.</p>
+                <p>The layer gets refreshed every 30 seconds because of API's daily limit. Real time changes are thus, a little delayed and cannot be seen as a smooth animation, as was intended.</p>
+                <img src="images/how-to-pics/p36.png"/>
+                <p>If the CTA Bus Tracker API limit has been reached for the day, the application will display the error displayed above!</p>
+                <img src="images/how-to-pics/p37.png"/>
+                <p>The bus icon marks the location of the bus within 30 seconds of its actual location.</p>
+                <img src="images/how-to-pics/p38.png"/>
+                <p>Every marker has information about the CTA bus tracking bound to it. On clicking on a mapped icon, a popup displays:</p>
+                <ol type="1">
+                    <li>Route (route the bus is currently serving)</li>
+                    <li>Route time (the time/date the data was pulled</li>
+                    <li>Next stop (the next stop the bus )</li>
+                    <li>Risk Level (a rating of the level of risk from 1-3, 1 being the worst)</li>
+                    <li>Street (street address)</li>
+                </ol>
+                
+                <h3>VISUALIZATIONS:</h3>
+                <img src="images/how-to-pics/p39.png"/>
+                <p>The application displays 4 visualizations, according to what the developers thought would be best information to add to the application. </p>
+                <ol type="1">
+                    <li>The visualization can be accessed by pressing the chart button on the sidebar, as indicated</li>
+                    <li>By default, the user can only see 2 of the visualizations because the intention is to keep the map in maximum view at all times, the user can, however, press the indicated link to expand the visualization module in order to see all 4 visualizations at once</li>
+                </ol>
+                <img src="images/how-to-pics/p40.png"/>
+                <p>Once the "more graphs" link is pressed, the visualization module expands as shown above. This is revertible by pressing the "less graphs" link that would replace the "more graphs" link once it is pressed. </p>
+                <ol type="1">
+                    <li>1.  The first graph displays the number of reported streetlight outages in Chicago vs. the user selected area (SA) or in the area around the user selected path. The user is able to see the streetlight outages, for both Chicago and the SA in a bi-weekly vs. monthly breakdown.</li>
+                    <li>2.  The second graph displays the number of reported recent crimes in Chicago vs. the user selected area (SA) or in the area around the user selected path. The user is able to see the recent crimes, for both Chicago and the SA in a bi-weekly vs. monthly breakdown.</li>
+                    <li>3.  The third graph displays the number of reported potholes in Chicago vs. the user selected area (SA) or in the area around the user selected path. The user is able to see the reported potholes, for both Chicago and the SA in a bi-weekly vs. monthly breakdown.</li>
+                    <li>4.  The fourth graph displays the number of reported abandoned vehicles in Chicago vs. the user selected area (SA) or in the area around the user selected path. The user is able to see the abandoned vehicles, for both Chicago and the SA in a bi-weekly vs. monthly breakdown.
+ 
+</li>
+                </ol>
+            </div>
+
+              <div id="interesting">
+                    <h2>Interesting Findings</h2>
+                    <p>
+                    <ol type='1'>
+                    <li>Though abandon vehicles seem to be prevalent around the city, there is a ring around downtown, particularly pronounced on the near south side, where these cars don't exist or have been cleared.<br />
+                    <img src="images/abandoned_ring.jpg" /></li>
+                    <li>The Hamlin Park / North Center area (from Belmont to Montrose between Western and Ashland) seems to be one of the few areas in the city that excells at keeping their streetlights on:<br />
+                    <img src="images/hamlin_park_streetlights.jpg" /></li>
+                    <li>Crime reports are much more evenly distributed around the city than we expected them to be.  From believing the accepted stereotypes, we would expect crime to be much worse in certain areas than others, but that does not seem to be the case:<br />
+                    <img src="images/crime_reports.jpg" /></li>
+                    <li>Food inspections seem to be noticably more positive on the southside:<br />
+                    <img src="images/food_inspections.jpg" /></li>
+                    <li>Divvy Stations near the UIC Campus see movement at night even when we have red car service available.</li>
+                    <img src=""/>
+                    <li>There are a lot of out of business places near UIC Campus which is surprising as you would like that proximity to a huge clientele would be a major boost to business</li>
+                    <img src="images/UIC1.jpg" height="400px" width ="300px"/>
+                    <img src="images/UIC4.jpg" height="400px" width ="300px"/>
+                    <li>Major Food Inspection Failure Culprits are major Restaurant Chains</li>
+                      1. McDonalds : They had the distinction of multiple failures.<br>
+                        <img src="images/McDonald.jpg" height="400px" width ="300px"/><br>
+                        <img src="images/McDonald2.jpg" height="400px" width ="300px"/><br>
+                      2. Chipotle<br>
+                        <img src="images/Chipotle.jpg" height="400px" width ="300px"/><br>
+                      3. Pot Belly<br>
+                        <img src="images/PotBelly.jpg" height="400px" width ="300px"/><br>
+                      4. Jamba Juice<br>
+                        <img src="images/JambaJuice.jpg" height="400px" width ="300px"/><br>
+                      5. 7 Eleven <br>
+                        <img src="images/SEleven.jpg" height="400px" width ="300px"/>
+
+                    <img src=""/>
+                    <li>Some of the Places we love near UIC have failed the food inspection too</li>
+                      1. Jimmy Johns<br>
+                      <img src="images/Jimmy.jpg" height="400px" width ="300px"/><br>
+                      2. Mario's Lemonade Stand<br>
+                      <img src="images/UIC3.jpg" height="400px" width ="300px"/><br>
+                      3. AMC Theatre <br>
+                      <img src="images/AMC.jpg" height="400px" width ="300px"/><br>
+                      4. Peete's Coffee Shop
+                      <img src="images/UIC2.jpg" height="400px" width ="300px"/><br>
+                      5. Subway<br>
+                      <img src="images/Subway.jpg" height="400px" width ="300px"/><br>
+                      <br> Some Indian Places have failed this too.<br>
+                      <img src="images/Indian1.jpg" height="400px" width ="300px"><br>`
+                    <img src=""/>
+                    <li></li>
+                    <img src=""/>
+                    <li></li>
+                    <img src=""/>
+                    </ol>
+                    </p>
+                <br/>
+              </div>
+	              <div id="data">
+	              <h2>Project Data Sources</h2>
+	              <hr />
+	              <br />
+	              <h3>Soda API</h3>
+                <p> Soda API is the API for all the 311 data being used for this project. Each layer had to be shown on the map and had to be sub-divided on the basis of two different times- last week and last month which made sense as it had to be relevant to the user using the application. Along with showing data subdivided based on time, each marker on the map also shows various tidbits on each layer.
+                </p>
+
+                The objective of the project was to display the Following are the data sources which are being fulled using Soda API. 
+                <ul>
+                  <li>Reported PotHoles</li>
+                    <p>
+                      Potholes Layers show the following tidbits :
+                      <ol type="1">
+                          <li>Date of Report</li>
+                          <li>Status: Fixed or Open</li>
+                          <li>Street Location of the Pothole</li>
+                    <li>A Customized message either warning about the pothole or wishing a safe trip!</li>
+                      </ol>
+                    </p>
+                  <li>Reported Abandoned Vehicles</li>
+                    <ol type="1">Abandoned Layer show the following tidbits:
+                      <li>Location : Intersection at which the station is situated</li>
+                      <li>Available Bikes</li>
+                      <li>Available Docks</li>
+                    </ol>
+                <li>Reported Crime in Chicago</li>
+                  <ol type="1"> Reported Crime in Chicago
+                    <li> Date of Report</li>
+                    <li> Description of the Crime</li>
+                    <li> Scene of the Crime</li>
+                    <li> A Customized Message warning the user</li>
+                  </ol>
+                <li>Reported StreetLights Out</li>
+                  <ol type="1">
+                    <li>Date of Report</li>
+                    <li> Status: Completed or Open</li>
+                    <li> Street at which the call was made for</li>
+                    <li> Customized Message</li>
+                  </ol>
+                <li>Food Inspection</li>
+                <li>Points of Interest </li>
+                 <ol type="1">Different Points of Interests being showed.
+                   <li>Public Garages</li>
+                   <li>Taverns</li>
+                   <li>Packaged Goods</li>
+                   <li>Special Food Events</li>
+                   <li>Navy Pier Events</li>
+                   <li>Music Shops</li>
+                   <li>Bars</li>
+                   <li>Restaurants</li>
+                   <li>Public Place of Amusement</li>
+                 </ol>
+                 Each of these POIs have some popups showing up<br>
+                <ol type="1">
+                   <li>Name of the Establishment</li>
+                   <li>Street</li>
+                </ol>
+                To find more about Soda API and developer uses, Please goto click the following link : <a href="http://dev.socrata.com/consumers/getting-started.html">Soda API</a>
+	              <h3>Divvy Bike Data</h3>
+	              <h3>CTA Bus Tracker </h3>
+	              <h3>weather underground API</h3>
+                <p>
+                The Weather Data is being sourced from Weather Undeground and we are using the API with current location as Chicago and the temperature is shown in Fahrenheit. We have also shown the Weather images besides the temperature itself to give a more visual feel to the user. People respond better to images and can relate better to the weather if they have weather icons alongside the temperature. The icons take into account the time and even the sunset and sunrise timings when bringing up the icons.
+                <br>
+                <img src="images/weather.jpg" width ="300px" height ="200px"/>
+                </p>
+	              <br />
+	              <br />
+	              <h2>Third Party Libraries</h2>
+	              <hr />
+	              <br />
+	              <h3>d3</h3>
+                d3.js is the library used to do the visualizations and parsing the dates for last week and last month.
+	              <h3>leaflet</h3>
+	              <h3>leaflet-sidebar</h3>
+	              <h3>jquery (layout + UI only)</h3>
+	              <h3>jquery UI (layout + UI only)</h3>
+	              <h3>bootstrap (layout + UI only)</h3>
+	              <h3>font awesome icons</h3>
+                <p>
+                We have used these icons to show markers on the map. They play super nice with leafet and you can extend them to show up with different colors and icons as needed. <br>
+                To know more please goto <a href="http://fortawesome.github.io/Font-Awesome/">FONT AWESOME</a>
+                </p>
+	              <h3>moment.js</h3>
+                <h3>Jason Mayes Twitter API</h3>
+                <p>
+                We have utilized Jason Mayes Twitter API to show data for three hashtags :<br>
+                <ul>
+                <li>#Chicago #Crime</li>
+                <li>#Chicago #Food</li>
+                <li>#Chicago #311</li>
+                </ul>
+                  <p>
+                  This has been achieved through creating twitter widgets and calling the API to show data for each hashtag. We can show and hide images but we choose not to show images because of size constraints. The API also allows us to reply, retweet and make tweets as favorites if the user has logged into his/her twitter account. The API allows us to do that straight from the application itself. Also, we limited the application to show the top 5 tweets at a time as we are not allowed to scroll.
+                  </p>
+                <ol type='1'>
+                  <li> Food </li>
+                  <img src="images/twitterFood.jpg" width="200px" height="200px"/>
+                  <li> 311 </li>
+                  <img src="images/twitter311.jpg" width="200px" height="200px"/>
+                  <li> Crime </li>
+                  <img src="images/twittercrime.jpg" width="200px" height="200px"/>
+                </ol>
+                </p>
+	              
+	              <br/> 
+	              <br/>
+              </div>
+              <div id="sourcecode">
+                  <h2>Source Code</h2>
+                  <hr />
+                  <br />
+                  <h2>Installation Instructions</h2>
+                  <p>
+                  The beauty of using Javascript and its respective libraries is that no extra tools or utilities or any huge integrated development environment is needed to run our project. 
+                  <br /><br />
+                  There is some work done on the server side, but because this application requires internet access regardless, we let our server do that work for you.  Of course, if you want to see the work that our server does or interact with it, you can look at the included app.py file which is a simple cherrypy appliction.
+                  <br /><br />
+                  Of course, if all you want to do is download and run the application, you can do that with no trouble!  Please follow the following steps to go from start to set. 
+                  <ol type="1">
+                  <li> Please read the how to use page for getting the best out of the application.</li>
+                  <li> Download the application by running:<br /><br />
+                       <code>git clone https://github.com/trustdarkness/righthererightnow.git</code><br /></li>
+                  <li> Then cd into the project directory (usually righthererightnow) and type:<br /><br />
+                       <code>python -m SimpleHTTPServer</code><br /></li>
+                  <li> You can now access the application on your local machine at<br /><br />
+                       http://localhost:8000</li>
+
+                  <li>  Although the application would run in any modern web browser, We recommend that latest version of Google Chrome should be used to run the application. You can download Chrome <a href="https://www.google.com/chrome/browser/index.html"><b>here</b></a></li>  
+                  </ol>
+                  You can also view all of this information on Mike's public github page:<br /><br />
+                  <a href="https://github.com/trustdarkness/righthererightnow">https://github.com/trustdarkness/righthererightnow</a>
+                  </p>
+                  <br/> 
+                  <br/>
+
+              </div>
+              <div id="timeline">
+                  <h2>Team Members:</h2>
+                  <h3>Sharad Tanwar</h3>
+                  First Week
+                  - Implemented Map Functionality to have zoomable and pannable map of Chicago with BaseLayers and Overlays.<br /><img src="./images/Screenshots/Sharad/ZoomablePannableMap1.png" width="400px" height="200px" /> <br />
+                  - Added rudimentary Weather Functionality(Subject to Change) <br />
+                  - Working on CTA Bus Tracker <br />
+                  - Implemented the box functionality to restrict view according to user selection.<br /> 
+                  <img src="./images/Screenshots/Sharad/Box_Pattern.png" width="400px" height="200px" /> <br />
+                  - Implemented rudimentary polyline functionality to enable user to see data along the path selected.
+                  <br /> <img src="./images/Screenshots/Sharad/PolyLine_Mode.png" width="400px" height="200px" />
+                  <br /> <img src="./images/Screenshots/Sharad/PolyLine_Mode_All.png" width="400px" height="200px" /> <br />
+                  - Potholes<br /> 
+                  <img src="./images/Screenshots/Sharad/Box_Pattern_PotHole.png" width="400px" height="200px" /> <br /> <img src=""/> 
+                  <br />
+                  - Abandoned Cars<br /> 
+                  <img src="./images/Screenshots/Sharad/PolyLine_Vehicles.png" width="400px" height="200px"/> <br />
+                  - Street lights<br /> 
+                  <img src="./images/Screenshots/Sharad/Box_Pattern_StreetLight.png" width="400px" height="200px"/> <br /> <img src="./images/Screenshots/Sharad/PolyLine_StreetLights.png" width="400px" height="200px"/> <br />
+                  - Recent Crime<br /> 
+                  <img src="./images/Screenshots/Sharad/Box_Pattern_RecentCrime.png" width="400px" height="200px"/> 
+                  <br /> 
+                  <img src="./images/Screenshots/Sharad/PolyLine_RecentCrime.png" width="400px" height="200px"/> <br />
+                  - Food Inspection Details<br /> 
+                  <img src="./images/Screenshots/Sharad/Box_Pattern_FoodInspections.png" width="400px" height="200px"/> 
+                  <br /> 
+                  <img src="./images/Screenshots/Sharad/PolyLine_FoodInspections.png" width="400px" height="200px"/> 
+                  <br />
+                  - Points of interest<br /> 
+                  <img src="./images/Screenshots/Sharad/Box_Pattern_ActivePOI.png" width="400px" height="200px"/> 
+                  <br /> 
+                  <img src="./images/Screenshots/Sharad/PolyLine_ActivePOI.png" width="400px" height="200px"/> 
+                  <br />
+                  - Implemented Icons for each layer to denote significance<br />
+                  <img src="./images/Screenshots/Sharad/Box_Pattern_ActivePOI.png" width="400px" height="200px"/> 
+                  <br /> 
+                  <img src="./images/Screenshots/Sharad/PolyLine_ActivePOI.png" width="400px" height="200px"/> 
+                  
+                  Second Week<br />
+                  - Implemented CTA Bus Tracker Layer <br />
+                  <img src="./images/Screenshots/Sharad/BusTracker1.png" width="400px" height="200px"/> 
+                  <br /> 
+                  <img src="./images/Screenshots/Sharad/BusTracker2.png" width="400px" height="200px"/> 
+                  <br />
+                  - New Routing Implementation for Path Mode <br />
+                  <img src="./images/Screenshots/Sharad/FixedPathScreenshot3.png" width="400px" height="200px"/> 
+                  <br /> 
+                  <img src="./images/Screenshots/Sharad/FixedPathScreenshot2.png" width="400px" height="200px"/> 
+                  <br />
+                  <img src="./images/Screenshots/Sharad/FixedPathScreenshot1.png" width="400px" height="200px"/> 
+                  <br />
+                  - Fixed Markers for some layers
+                  <br />
+                  <h3>Shahbaz Khan</h3>
+                  - Made new icons for potholes/traffic lights/recent crime/abandoned vehicles - each of them has 3 opacity settings so the appropriate one can be used in accordance to the recency of the crime. Also looking into Bootstrap icon components to best replace the current ones. <br />
+                  
+                  - Looking into making visualizations using bar charts + . Deciding on the relevant metrics to display to avoid unnecessary information clutters.<br /><br />
+                  <h3>Christopher Thomas</h3>
+                  - Graphs<br /><br />
+                  <h3>Michael Thompson</h3>
+                  - Streetwise routing (leaflet routing machine)<br />
+                  - Weather interface<br />
+                  - Implemented python backend for limiting divvy data by geographic location<br />
+                  - Added divvy layer querying functionality<br />
+                  - User interface styling and organization<br />
+                  Second Week<br />
+                  - Layer Control<br />
+                  <img src="./images/Screenshots/Mike/NewLayerControl.png" width="400px" height="200px"/> </br>
+                  - UI Controls: zoom, toggles, help, map layers, and box and path control.</br>
+                  <img src="./images/Screenshots/Mike/AppControl.png" width="400px" height="300px"/> </br>
+                  - Weather querying and updating:<br>
+                  <img src="./images/Screenshots/Mike/newWeatherControl.png" width="400px"/> </br>
+                  - Graph Controls and layout:</br>
+                  <img src="./images/Screenshots/Mike/GraphWindow.png"  height="300px"/> </br>
+                  - Divvy Bike front/backend and location limiting:<br />
+                  <img src="./images/Screenshots/Mike/Divvy.png"  height="300px"/> </br>
+                  - Refresh, "Live" updating:<br />
+                  <img src="./images/Screenshots/Mike/liveupdate.png"  height="300px"/> </br>
+                  - Leaflet routing machine integration (with Sharad)<br />
+                  <img src="./images/Screenshots/Mike/routing.png"  height="300px"/> </br>
+                  <br />
+                  
+                  <br/> 
+                  <br/>
+              </div>
+            </div>
+        </div>
+  </div>
+  </body>
+</html>
